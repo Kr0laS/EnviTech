@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using EnviTech.Db;
 
 namespace EnviTech.ViewModel
 {
     public partial class MainViewModel : BaseViewModel
     {
-        [ObservableProperty]
-        private ObservableCollection<DateTime> DateList;
+        private ObservableCollection<string> _dateList;
+
+         public ObservableCollection<string> DateList
+        {
+            get { return _dateList; }
+            set
+            {
+                _dateList = value;
+                OnPropertyChanged(nameof(DateList));
+            }
+        }
 
         private  IDateRepository _dateRepository;
 
@@ -19,12 +24,9 @@ namespace EnviTech.ViewModel
         { 
             _dateRepository = dateRepository;
 
-            Task.Run(async () =>
-            {
-                var dates = await dateRepository.GetDates();
+            var dates = dateRepository.GetDates();
 
-                DateList = new ObservableCollection<DateTime>(dates);
-            });
+            DateList = new ObservableCollection<string>(dates.Select(t => t.ToString()));
         }
 
     }

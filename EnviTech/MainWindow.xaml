@@ -3,14 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EnviTech"
+        xmlns:local="clr-namespace:EnviTech" 
+        xmlns:viewmodel="clr-namespace:EnviTech.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
         </Grid.RowDefinitions>
-        <ComboBox>
-            
-        </ComboBox>
+        <ComboBox ItemsSource="{Binding DateList}"/>
     </Grid>
 </Window>

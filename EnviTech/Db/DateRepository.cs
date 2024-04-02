@@ -17,10 +17,18 @@ namespace EnviTech.Db
             _db = dbConnection;
         }
 
-        public async Task<List<DateTime>> GetDates()
+        public async Task<List<DateTime>> GetDatesAsync()
         {
             string sql = "SELECT Date_Time FROM DATA";
             var dates = await _db.QueryAsync<DateTime>(sql);
+
+            return dates.ToList();
+        }
+
+        public List<DateTime> GetDates()
+        {
+            string sql = "SELECT Date_Time FROM DATA";
+            var dates = _db.Query<DateTime>(sql);
 
             return dates.ToList();
         }

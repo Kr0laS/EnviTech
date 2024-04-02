@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnviTech.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace EnviTech
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly MainViewModel viewModel;
+        public MainWindow(MainViewModel vm)
         {
             InitializeComponent();
+            viewModel = vm;
+            DataContext = viewModel;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace EnviTech.Db
 {
     public interface IDateRepository
     {
-        Task<List<DateTime>> GetDates();
+        List<DateTime> GetDates();
+        Task<List<DateTime>> GetDatesAsync();
     }
 }

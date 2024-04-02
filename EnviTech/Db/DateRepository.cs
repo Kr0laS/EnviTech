@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace EnviTech.Db
 {
-    internal class DateRepository : IDateRepository
+    internal class DateRepository : BaseRepository, IDateRepository
     {
-        private readonly IDbConnection _db;
 
-        public DateRepository(IDbConnection dbConnection)
+        public DateRepository(IDbConnection db) : base(db)
         {
-            _db = dbConnection;
         }
 
         public async Task<List<DateTime>> GetDatesAsync()

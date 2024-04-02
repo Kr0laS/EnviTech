@@ -35,9 +35,9 @@
                   SelectedItem="{Binding EndDate}" 
                   Height="40" Width="120"/>
         <ComboBox Name="Operators" 
-                  Grid.Column="1" Grid.Row="1" 
-                  ItemsSource="{Binding DateList}" 
-                  SelectedItem="{Binding EndDate}" 
+                  Grid.Column="1" Grid.Row="2" 
+                  ItemsSource="{Binding OperatorList}" 
+                  SelectedItem="{Binding Operator}" 
                   Height="40" Width="120"/>
     </Grid>
 </Window>

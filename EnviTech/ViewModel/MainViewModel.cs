@@ -19,6 +19,30 @@ namespace EnviTech.ViewModel
             }
         }
 
+        private ObservableCollection<string> _operatorList;
+
+        public ObservableCollection<string> OperatorList
+        {
+            get { return _operatorList; }
+            set
+            {
+                _operatorList = value;
+                OnPropertyChanged(nameof(OperatorList));
+            }
+        }
+
+        private string _operator;
+
+        public string Operator
+        {
+            get { return _operator; }
+            set
+            {
+                _operator = value;
+                OnPropertyChanged(nameof(Operator));
+            }
+        }
+
         private string _startDate;
 
         public string StartDate
@@ -43,14 +67,16 @@ namespace EnviTech.ViewModel
             }
         }
 
-        private  IDateRepository _dateRepository;
+        private readonly RepositoryFacade _repo;
 
-        public MainViewModel(IDateRepository dateRepository)
-        { 
-            _dateRepository = dateRepository;
+        public MainViewModel(RepositoryFacade repo)
+        {
+            _repo = repo;
 
-            var dates = dateRepository.GetDates();
+            var dates = repo.Dates.GetDates();
+            var operators = repo.Operators.GetOperators();
 
+            OperatorList = new ObservableCollection<string>(operators);
             DateList = new ObservableCollection<string>(dates.Select(t => t.ToString()));
         }
 

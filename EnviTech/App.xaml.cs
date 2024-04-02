@@ -36,7 +36,9 @@ namespace EnviTech
                 .ConfigureServices((ctx, services) =>
                 {
                     services.AddScoped<IDbConnection>(t => new SqlConnection(dbString));
-                    services.AddSingleton<IDateRepository,DateRepository>();
+                    services.AddScoped<IDateRepository,DateRepository>();
+                    services.AddScoped<IOperatorsRepository,OperatorsRepository>();
+                    services.AddScoped<RepositoryFacade>();
 
                     services.AddSingleton<MainWindow>();
                     services.AddSingleton<MainViewModel>();

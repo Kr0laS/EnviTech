@@ -22,9 +22,27 @@ namespace EnviTech
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((ctx, services) =>
                 {
-
+                    services.AddSingleton<MainWindow>();
                 })
                 .Build();
+        }
+
+        protected override async void OnStartup(StartupEventArgs e)
+        {
+            await AppHost.StartAsync();
+
+            var mainWindow = AppHost.Services.GetRequiredService<MainWindow>();
+
+            mainWindow.Show();
+
+            base.OnStartup(e);
+        }
+
+        protected override async void OnExit(ExitEventArgs e)
+        {
+            await AppHost.StopAsync();
+
+            base.OnExit(e);
         }
     }
 }

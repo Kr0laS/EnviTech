@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace EnviTech.Db
 {
-    internal class BaseRepository
+    public class BaseRepository
     {
+        protected const string OperatorsTable = "OPERATOR";
+        protected const string DataTable = "DATA";
+        protected const string StatusTable = "STATUS";
+
         protected readonly IDbConnection _db;
 
         public BaseRepository(IDbConnection dbConnection)

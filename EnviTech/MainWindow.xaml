@@ -9,7 +9,30 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ComboBox ItemsSource="{Binding DateList}"/>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Height="40" MaxWidth="200" Content="Pick Start Date" FontWeight="Bold" FontSize="20"/>
+        <ComboBox Name="StartDatePicker" 
+                  Grid.Column="1"
+                  ItemsSource="{Binding DateList}" 
+                  SelectedItem="{Binding StartDate}" 
+                  Height="40" Width="120"/>
+        <Label Grid.Row="1" Height="40" MaxWidth="200" Content="Pick End Date" FontWeight="Bold" FontSize="20"/>
+        <ComboBox Name="EndDatePicker" 
+                  Grid.Column="1" Grid.Row="1" 
+                  ItemsSource="{Binding DateList}" 
+                  SelectedItem="{Binding EndDate}" 
+                  Height="40" Width="120"/>
     </Grid>
 </Window>

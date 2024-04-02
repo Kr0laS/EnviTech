@@ -1,6 +1,10 @@
 ﻿using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace EnviTech
 {
@@ -14,15 +18,18 @@ namespace EnviTech
 
         public App()
         {
-            AppHost = BuildHost();
+            var connectionString = System.Configuration.ConfigurationManager
+                .ConnectionStrings["EnviTechConnectionString"].ConnectionString;
+            AppHost = BuildHost(connectionString);
         }
 
-        static IHost BuildHost()
+        static IHost BuildHost(string dbString)
         {
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((ctx, services) =>
                 {
                     services.AddSingleton<MainWindow>();
+                    services.AddScoped<IDbConnection>(t => new SqlConnection(dbString));
                 })
                 .Build();
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EnviTech.Db
 {
-    internal interface IDateRepository
+    public interface IDateRepository
     {
         Task<List<DateTime>> GetDates();
     }

@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using EnviTech.Db;
+using EnviTech.ViewModel;
 
 namespace EnviTech
 {
@@ -21,7 +22,6 @@ namespace EnviTech
 
         public App()
         {
-
             //Takes connection string from App.config file.
             var connectionString = System.Configuration.ConfigurationManager
                 .ConnectionStrings["EnviTechConnectionString"].ConnectionString;
@@ -35,9 +35,11 @@ namespace EnviTech
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((ctx, services) =>
                 {
-                    services.AddSingleton<MainWindow>();
                     services.AddScoped<IDbConnection>(t => new SqlConnection(dbString));
-                    services.AddSingleton<DateRepository>();
+                    services.AddSingleton<IDateRepository,DateRepository>();
+
+                    services.AddSingleton<MainWindow>();
+                    services.AddSingleton<MainViewModel>();
                 })
                 .Build();
         }

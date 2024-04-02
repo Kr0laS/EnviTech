@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Reflection;
+using EnviTech.Db;
 
 namespace EnviTech
 {
@@ -18,9 +21,13 @@ namespace EnviTech
 
         public App()
         {
+
+            //Takes connection string from App.config file.
             var connectionString = System.Configuration.ConfigurationManager
                 .ConnectionStrings["EnviTechConnectionString"].ConnectionString;
+
             AppHost = BuildHost(connectionString);
+
         }
 
         static IHost BuildHost(string dbString)
@@ -30,6 +37,7 @@ namespace EnviTech
                 {
                     services.AddSingleton<MainWindow>();
                     services.AddScoped<IDbConnection>(t => new SqlConnection(dbString));
+                    services.AddSingleton<DateRepository>();
                 })
                 .Build();
         }

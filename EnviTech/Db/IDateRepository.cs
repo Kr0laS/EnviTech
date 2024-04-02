@@ -8,6 +8,6 @@ namespace EnviTech.Db
 {
     internal interface IDateRepository
     {
-        List<DateTime> GetDates();
+        Task<List<DateTime>> GetDates();
     }
 }

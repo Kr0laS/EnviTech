@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,19 +10,19 @@ namespace EnviTech.Db
 {
     internal class DateRepository : IDateRepository
     {
-        private readonly IDbConnection _dbConnection;
+        private readonly IDbConnection _db;
 
         public DateRepository(IDbConnection dbConnection)
         {
-            _dbConnection = dbConnection;
+            _db = dbConnection;
         }
 
-        public List<DateTime> GetDates()
+        public async Task<List<DateTime>> GetDates()
         {
-            return new List<DateTime>()
-            {
-                DateTime.Now,
-            };
+            string sql = "SELECT Date_Time FROM DATA";
+            var dates = await _db.QueryAsync<DateTime>(sql);
+
+            return dates.ToList();
         }
     }
 }

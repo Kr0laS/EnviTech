@@ -1,23 +1,72 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Controls;
 using EnviTech.Db;
 
 namespace EnviTech.ViewModel
 {
     public partial class MainViewModel : BaseViewModel
     {
-        private ObservableCollection<string> _dateList;
+        private DateTime _startDate;
 
-        public ObservableCollection<string> DateList
+        public DateTime StartDate
         {
-            get { return _dateList; }
+            get { return _startDate; }
             set
             {
-                _dateList = value;
-                OnPropertyChanged(nameof(DateList));
+                _startDate = value;
+                OnPropertyChanged(nameof(StartDate));
             }
         }
+
+        private DateTime _endDate;
+
+        public DateTime EndDate
+        {
+            get { return _endDate; }
+            set
+            {
+                _endDate = value;
+                OnPropertyChanged(nameof(EndDate));
+            }
+        }
+
+        private DateTime _pickedStartDate;
+
+        public DateTime PickedStartDate
+        {
+            get { return _pickedStartDate; }
+            set
+            {
+                _pickedStartDate = value;
+                OnPropertyChanged(nameof(PickedStartDate));
+            }
+        }
+
+        private DateTime _pickedEndDate;
+
+        public DateTime PickedEndDate
+        {
+            get { return _pickedEndDate; }
+            set
+            {
+                _pickedEndDate = value;
+                OnPropertyChanged(nameof(PickedEndDate));
+            }
+        }
+
+        //private ObservableCollection<string> _dateList;
+
+        //public ObservableCollection<string> DateList
+        //{
+        //    get { return _dateList; }
+        //    set
+        //    {
+        //        _dateList = value;
+        //        OnPropertyChanged(nameof(DateList));
+        //    }
+        //}
 
         private ObservableCollection<string> _operatorList;
 
@@ -43,41 +92,19 @@ namespace EnviTech.ViewModel
             }
         }
 
-        private string _startDate;
-
-        public string StartDate
-        {
-            get { return _startDate; }
-            set
-            {
-                _startDate = value;
-                OnPropertyChanged(nameof(StartDate));
-            }
-        }
-
-        private string _endDate;
-
-        public string EndDate
-        {
-            get { return _endDate; }
-            set
-            {
-                _endDate = value;
-                OnPropertyChanged(nameof(EndDate));
-            }
-        }
-
         private readonly RepositoryFacade _repo;
 
         public MainViewModel(RepositoryFacade repo)
         {
             _repo = repo;
 
-            var dates = repo.Dates.GetDates();
+            StartDate = _repo.Dates.GetEarliestDate();
+            EndDate = _repo.Dates.GetLatestDate();
+            //var dates = repo.Dates.GetDates();
             var operators = repo.Operators.GetOperators();
 
             OperatorList = new ObservableCollection<string>(operators);
-            DateList = new ObservableCollection<string>(dates.Select(t => t.ToString()));
+            //DateList = new ObservableCollection<string>(dates.Select(t => t.ToString()));
         }
 
     }

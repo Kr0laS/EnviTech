@@ -23,19 +23,25 @@
         </Grid.ColumnDefinitions>
 
         <Label Height="40" MaxWidth="200" Content="Pick Start Date" FontWeight="Bold" FontSize="20"/>
-        <ComboBox Name="StartDatePicker" 
-                  Grid.Column="1"
-                  ItemsSource="{Binding DateList}" 
-                  SelectedItem="{Binding StartDate}" 
-                  Height="40" Width="120"/>
+        <DatePicker x:Name="StartDatePicker"
+                    Height="25" Width="200"
+                    Grid.Column="1" Grid.Row="0" 
+                    DisplayDateStart="{Binding StartDate}" 
+                    DisplayDateEnd="{Binding EndDate}" 
+                    SelectedDate="{Binding PickedStartDate}"/>
         <Label Grid.Row="1" Height="40" MaxWidth="200" Content="Pick End Date" FontWeight="Bold" FontSize="20"/>
-        <ComboBox Name="EndDatePicker" 
-                  Grid.Column="1" Grid.Row="1" 
-                  ItemsSource="{Binding DateList}" 
-                  SelectedItem="{Binding EndDate}" 
-                  Height="40" Width="120"/>
+        <DatePicker x:Name="EndDatePicker" 
+                    Grid.Column="1" Grid.Row="1"
+                    Height="25" Width="200"
+                    DisplayDateStart="{Binding StartDate}" 
+                    DisplayDateEnd="{Binding EndDate}" 
+                    SelectedDate="{Binding PickedEndDate}"/>
+        
+        
+        
+        <Label Grid.Row="3" Height="40" MaxWidth="200" Content="Operation" FontWeight="Bold" FontSize="20"/>
         <ComboBox Name="Operators" 
-                  Grid.Column="1" Grid.Row="2" 
+                  Grid.Column="1" Grid.Row="3" 
                   ItemsSource="{Binding OperatorList}" 
                   SelectedItem="{Binding Operator}" 
                   Height="40" Width="120"/>

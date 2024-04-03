@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using EnviTech.Db;
 
@@ -121,30 +122,21 @@ namespace EnviTech.ViewModel
         #endregion
 
         private readonly RepositoryFacade _repo;
+        private DataForm _dataForm;
 
-        public MainViewModel(RepositoryFacade repo)
+        public MainViewModel(RepositoryFacade repo,
+            DataForm dataForm)
         {
             _repo = repo;
+            _dataForm = dataForm;
 
-            StartDate = _repo.Dates.GetEarliestDate();
-            EndDate = _repo.Dates.GetLatestDate();
-            
-            PickedStartDate = StartDate;
-            PickedEndDate = EndDate;
-
-            var operators = repo.Operators.GetOperators();
-
-            OperatorList = new ObservableCollection<string>(operators);
-
-            var values = repo.Values.GetValues()
-                .OrderBy(val => int.Parse(val.Substring(5)))
-                .ToList();
-            ValueList = new ObservableCollection<string>(values);
+            FetchDbInitialInfo();
 
             ClearPageCommand = new Command(() => ClearPage());
 
             SubmitFormCommand = new Command(() => SubmitForm());
         }
+
 
         public Command ClearPageCommand { get; set; }
 
@@ -152,7 +144,7 @@ namespace EnviTech.ViewModel
         
         private void SubmitForm()
         {
-            throw new NotImplementedException();
+
         }
         
         private void ClearPage()
@@ -164,6 +156,23 @@ namespace EnviTech.ViewModel
             Operator = "";
         }
 
+        private void FetchDbInitialInfo()
+        {
+            StartDate = _repo.Dates.GetEarliestDate();
+            EndDate = _repo.Dates.GetLatestDate();
+
+            PickedStartDate = StartDate;
+            PickedEndDate = EndDate;
+
+            var operators = _repo.Operators.GetOperators();
+
+            OperatorList = new ObservableCollection<string>(operators);
+
+            var values = _repo.Values.GetValues()
+                .OrderBy(val => int.Parse(val.Substring(5)))
+                .ToList();
+            ValueList = new ObservableCollection<string>(values);
+        }
 
     }
 }

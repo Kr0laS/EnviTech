@@ -1,12 +1,8 @@
 ﻿using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
-using System.Reflection;
 using EnviTech.Db;
 using EnviTech.ViewModel;
 
@@ -41,6 +37,7 @@ namespace EnviTech
                     services.AddScoped<IValuesRepository, ValuesRepository>();
                     services.AddScoped<RepositoryFacade>();
 
+                    services.AddTransient<DataForm>();
                     services.AddSingleton<MainWindow>();
                     services.AddSingleton<MainViewModel>();
                 })

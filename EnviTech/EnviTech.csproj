@@ -259,6 +259,7 @@
     <Compile Include="Db\OperatorsRepository.cs" />
     <Compile Include="Db\RepositoryFacade.cs" />
     <Compile Include="Db\ValuesRepository.cs" />
+    <Compile Include="Model\DataModel.cs" />
     <Compile Include="StartupHelpers\AbstractFactory.cs" />
     <Compile Include="StartupHelpers\IAbstractFactory.cs" />
     <Compile Include="StartupHelpers\ServiceExtensions.cs" />
@@ -311,9 +312,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

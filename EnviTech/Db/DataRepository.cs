@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using EnviTech.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,19 +19,15 @@ namespace EnviTech.Db
         {
         }
 
-        public IEnumerable<object> GetDataByValue(string valueName, 
-            string operation, 
-            string inputValue,
-            DateTime startDate,
-            DateTime endDate)
+        public IEnumerable<object> GetDataByValue(DataModel model)
         {
+            string sql = $"SELECT * FROM {DataTable} WHERE {model.ValueName} {model.Operation} " +
+                $"@InputValue AND Date_Time BETWEEN @StartDate AND @EndDate";
 
-            string sql = $"SELECT * FROM {DataTable} WHERE {valueName} {operation} {inputValue}" +
-                $"AND Date_Time BETWEEN '{startDate}' AND {endDate}";
-
-            var data = _db.Query<object>(sql);
+            var data = _db.Query<object>(sql, new { InputValue = model.InputValue, StartDate = model.StartDate, EndDate = model.EndDate });
 
             return data;
         }
+
     }
 }

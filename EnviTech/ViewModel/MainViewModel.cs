@@ -8,7 +8,7 @@ using EnviTech.StartupHelpers;
 
 namespace EnviTech.ViewModel
 {
-    public partial class MainViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
         #region - - - Properties - - -
 

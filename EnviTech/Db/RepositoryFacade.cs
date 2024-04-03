@@ -11,14 +11,17 @@ namespace EnviTech.Db
         public readonly IDateRepository Dates;
         public readonly IOperatorsRepository Operators;
         public readonly IValuesRepository Values;
+        public readonly IDataRepository Data;
 
         public RepositoryFacade(IDateRepository dateRepository,
             IOperatorsRepository operatorsRepository,
-            IValuesRepository values)
+            IValuesRepository values,
+            IDataRepository data)
         {
             Dates = dateRepository;
             Operators = operatorsRepository;
             Values = values;
+            Data = data;
         }
     }
 }

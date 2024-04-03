@@ -23,5 +23,11 @@ namespace EnviTech
         {
             InitializeComponent();
         }
+
+        //injection method
+        public void GetFormData()
+        {
+
+        }
     }
 }

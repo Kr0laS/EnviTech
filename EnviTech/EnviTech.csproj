@@ -252,6 +252,8 @@
       <DependentUpon>DataForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Db\BaseRepository.cs" />
+    <Compile Include="Db\DataRepository.cs" />
+    <Compile Include="Db\IDataRepository.cs" />
     <Compile Include="Db\IOperatorsRepository.cs" />
     <Compile Include="Db\IValuesRepository.cs" />
     <Compile Include="Db\OperatorsRepository.cs" />
@@ -262,6 +264,7 @@
     <Compile Include="StartupHelpers\ServiceExtensions.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Command.cs" />
+    <Compile Include="ViewModel\DataFormViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="DataForm.xaml">
       <SubType>Designer</SubType>

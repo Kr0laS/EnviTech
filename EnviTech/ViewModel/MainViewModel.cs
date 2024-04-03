@@ -163,7 +163,6 @@ namespace EnviTech.ViewModel
             Operator = "";
         }
 
-
         private void FetchDbInitialInfo()
         {
             StartDate = _repo.Dates.GetEarliestDate();
@@ -179,6 +178,7 @@ namespace EnviTech.ViewModel
             var values = _repo.Values.GetValues()
                 .OrderBy(val => int.Parse(val.Substring(5)))
                 .ToList();
+
             ValueList = new ObservableCollection<string>(values);
         }
 

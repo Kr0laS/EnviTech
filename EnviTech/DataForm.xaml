@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="DataForm" Height="450" Width="800">
     <Grid>
-        
+        <ScrollViewer>
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="True" />
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="LeftButton"
+                Width="25" Height="25"
+                VerticalAlignment="Bottom"
+                Margin="5" Content="←"
+                Click="LeftButton_Click"/>
+            <Button x:Name="RightButton"
+                Width="25" Height="25"    
+                VerticalAlignment="Bottom"
+                Margin="5" Content="→"
+                Click="RightButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -18,10 +18,15 @@ namespace EnviTech.Db
         {
         }
 
-        public IEnumerable<object> GetDataByValue(string valueName, string operation, string inputValue)
+        public IEnumerable<object> GetDataByValue(string valueName, 
+            string operation, 
+            string inputValue,
+            DateTime startDate,
+            DateTime endDate)
         {
 
-            string sql = $"SELECT * FROM {DataTable} WHERE {valueName} {operation} {inputValue}";
+            string sql = $"SELECT * FROM {DataTable} WHERE {valueName} {operation} {inputValue}" +
+                $"AND Date_Time BETWEEN '{startDate}' AND {endDate}";
 
             var data = _db.Query<object>(sql);
 

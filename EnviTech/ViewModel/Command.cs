@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace EnviTech.ViewModel
 {
-    internal class Command : ICommand
+    public class Command : ICommand
     {
         private readonly Action action;
         private readonly Action<object> actionParam;

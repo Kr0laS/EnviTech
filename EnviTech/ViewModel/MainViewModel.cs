@@ -8,6 +8,8 @@ namespace EnviTech.ViewModel
 {
     public partial class MainViewModel : BaseViewModel
     {
+        #region - - - Properties - - -
+
         private DateTime _startDate;
 
         public DateTime StartDate
@@ -116,6 +118,8 @@ namespace EnviTech.ViewModel
             }
         }
 
+        #endregion
+
         private readonly RepositoryFacade _repo;
 
         public MainViewModel(RepositoryFacade repo)
@@ -136,7 +140,30 @@ namespace EnviTech.ViewModel
                 .OrderBy(val => int.Parse(val.Substring(5)))
                 .ToList();
             ValueList = new ObservableCollection<string>(values);
+
+            ClearPageCommand = new Command(() => ClearPage());
+
+            SubmitFormCommand = new Command(() => SubmitForm());
         }
+
+        public Command ClearPageCommand { get; set; }
+
+        public Command SubmitFormCommand { get; set; }
+        
+        private void SubmitForm()
+        {
+            throw new NotImplementedException();
+        }
+        
+        private void ClearPage()
+        {
+            PickedStartDate = StartDate;
+            PickedEndDate = EndDate;
+            InputValue = "";
+            SelectedValue = "";
+            Operator = "";
+        }
+
 
     }
 }

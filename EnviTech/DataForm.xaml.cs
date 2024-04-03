@@ -1,4 +1,5 @@
 ﻿using EnviTech.Db;
+using EnviTech.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,9 @@ namespace EnviTech
         }
 
         //injection method
-        public void GetFormData(string ValueName, string operation, string inputValue)
+        public void GetFormData(DataModel model)
         {
-            _tableData = _repo.Data.GetDataByValue(ValueName, operation, inputValue).ToList();
+            _tableData = _repo.Data.GetDataByValue(model).ToList();
             
             dataGrid.ItemsSource = _tableData.GetRange(0, GAP);
         }

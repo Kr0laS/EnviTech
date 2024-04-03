@@ -24,7 +24,7 @@ namespace EnviTech.Db
             string sql = $"SELECT * FROM {DataTable} WHERE {model.ValueName} {model.Operation} " +
                 $"@InputValue AND Date_Time BETWEEN @StartDate AND @EndDate";
 
-            var data = _db.Query<object>(sql, new { InputValue = model.InputValue, StartDate = model.StartDate, EndDate = model.EndDate });
+            var data = _db.Query<object>(sql, model);
 
             return data;
         }

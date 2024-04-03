@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using EnviTech.Db;
 using EnviTech.StartupHelpers;
+using EnviTech.Model;
 
 namespace EnviTech.ViewModel
 {
@@ -142,14 +143,21 @@ namespace EnviTech.ViewModel
         public Command ClearPageCommand { get; set; }
 
         public Command SubmitFormCommand { get; set; }
-        
+
         private void SubmitForm()
         {
             if (!FormIsValid()) return;
 
             var dataform = _dataFormFactory.Create();
 
-            dataform.GetFormData(SelectedValue, Operator, InputValue);
+            dataform.GetFormData(new DataModel
+            {
+                InputValue = InputValue,
+                Operation = Operator,
+                ValueName = SelectedValue,
+                StartDate = StartDate,
+                EndDate = EndDate,
+            });
 
             dataform.Show();
         }

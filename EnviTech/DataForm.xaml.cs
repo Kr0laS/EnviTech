@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnviTech.Db;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,15 +20,19 @@ namespace EnviTech
     /// </summary>
     public partial class DataForm : Window
     {
-        public DataForm()
+        private readonly RepositoryFacade _repo;
+
+        public DataForm(RepositoryFacade repo)
         {
+            _repo = repo;
             InitializeComponent();
         }
 
         //injection method
-        public void GetFormData()
+        public void GetFormData(string ValueName, string operation, string inputValue)
         {
-
+            var list = _repo.Data.GetDataByValue(ValueName, operation, inputValue).ToList();
+            Console.WriteLine();
         }
     }
 }

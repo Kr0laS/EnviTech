@@ -145,7 +145,11 @@ namespace EnviTech.ViewModel
         
         private void SubmitForm()
         {
+            if (!FormIsValid()) return;
+
             var dataform = _dataFormFactory.Create();
+
+            dataform.GetFormData(SelectedValue, Operator, InputValue);
 
             dataform.Show();
         }
@@ -158,6 +162,7 @@ namespace EnviTech.ViewModel
             SelectedValue = "";
             Operator = "";
         }
+
 
         private void FetchDbInitialInfo()
         {
@@ -177,5 +182,15 @@ namespace EnviTech.ViewModel
             ValueList = new ObservableCollection<string>(values);
         }
 
+        private bool FormIsValid()
+        {
+            if (InputValue == "" || SelectedValue == "" || Operator == "")
+            {
+                MessageBox.Show("Some input is invalid");
+                return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -264,7 +264,6 @@
     <Compile Include="StartupHelpers\ServiceExtensions.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Command.cs" />
-    <Compile Include="ViewModel\DataFormViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="DataForm.xaml">
       <SubType>Designer</SubType>

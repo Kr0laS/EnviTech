@@ -20,6 +20,7 @@ namespace EnviTech.Db
 
         public IEnumerable<object> GetDataByValue(string valueName, string operation, string inputValue)
         {
+
             string sql = $"SELECT * FROM {DataTable} WHERE {valueName} {operation} {inputValue}";
 
             var data = _db.Query<object>(sql);

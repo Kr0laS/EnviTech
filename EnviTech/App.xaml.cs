@@ -33,9 +33,12 @@ namespace EnviTech
                 .ConfigureServices((ctx, services) =>
                 {
                     services.AddScoped<IDbConnection>(t => new SqlConnection(dbString));
+                    
+                    //todo: write wrapper function...
                     services.AddScoped<IDateRepository,DateRepository>();
                     services.AddScoped<IOperatorsRepository,OperatorsRepository>();
                     services.AddScoped<IValuesRepository, ValuesRepository>();
+                    services.AddScoped<IDataRepository, DataRepository>();
                     services.AddScoped<RepositoryFacade>();
 
                     services.AddFormFactory<DataForm>();

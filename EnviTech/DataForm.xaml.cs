@@ -33,31 +33,38 @@ namespace EnviTech
         }
 
         //injection method
-        public void GetFormData(DataModel model)
+        public void GetFormData(DataModel model, List<string> values)
         {
-            _tableData = _repo.Data.GetDataByValue(model).ToList();
-            
+            _tableData = _repo.Data.GetDataByValue(model, values).ToList();
+
+            if (!_tableData.Any())
+            {
+                MessageBox.Show("no data for your query");
+                return;
+            }
             dataGrid.ItemsSource = _tableData.GetRange(0, GAP);
+        }
+
+        private void DisplayData()
+        {
+            int endIndex = Math.Min(index + GAP, _tableData.Count);
+            dataGrid.ItemsSource = _tableData.GetRange(index, endIndex - index);
         }
 
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            if (index < GAP)
+            if (index - GAP < 0)
                 return;
-            dataGrid.ItemsSource = _tableData.GetRange(index - GAP, index);
             index -= GAP;
+            DisplayData();
         }
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            if (index + GAP > _tableData.Count)
-            {
-                dataGrid.ItemsSource = _tableData.GetRange(index, _tableData.Count - 1);
-                index += GAP;
+            if (index + GAP >= _tableData.Count)
                 return;
-            }
-            dataGrid.ItemsSource = _tableData.GetRange(index, index + GAP);
             index += GAP;
+            DisplayData();
         }
     }
 }

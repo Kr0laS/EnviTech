@@ -157,7 +157,7 @@ namespace EnviTech.ViewModel
                 ValueName = SelectedValue,
                 StartDate = StartDate,
                 EndDate = EndDate,
-            });
+            }, ValueList.ToList());
 
             dataform.Show();
         }

@@ -100,7 +100,10 @@ namespace EnviTech.ViewModel
 
             StartDate = _repo.Dates.GetEarliestDate();
             EndDate = _repo.Dates.GetLatestDate();
-            //var dates = repo.Dates.GetDates();
+            
+            PickedStartDate = StartDate;
+            PickedEndDate = EndDate;
+
             var operators = repo.Operators.GetOperators();
 
             OperatorList = new ObservableCollection<string>(operators);

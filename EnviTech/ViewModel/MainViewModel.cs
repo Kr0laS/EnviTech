@@ -56,17 +56,41 @@ namespace EnviTech.ViewModel
             }
         }
 
-        //private ObservableCollection<string> _dateList;
+        private ObservableCollection<string> _valueList;
 
-        //public ObservableCollection<string> DateList
-        //{
-        //    get { return _dateList; }
-        //    set
-        //    {
-        //        _dateList = value;
-        //        OnPropertyChanged(nameof(DateList));
-        //    }
-        //}
+        public ObservableCollection<string> ValueList
+        {
+            get { return _valueList; }
+            set
+            {
+                _valueList = value;
+                OnPropertyChanged(nameof(ValueList));
+            }
+        }
+
+        private string _selectedValue;
+
+        public string SelectedValue
+        {
+            get { return _selectedValue; }
+            set
+            {
+                _selectedValue = value;
+                OnPropertyChanged(nameof(SelectedValue));
+            }
+        }
+
+        private string _inputValue = string.Empty;
+
+        public string InputValue
+        {
+            get { return _inputValue; }
+            set
+            {
+                _inputValue = value;
+                OnPropertyChanged(nameof(InputValue));
+            }
+        }
 
         private ObservableCollection<string> _operatorList;
 
@@ -107,7 +131,11 @@ namespace EnviTech.ViewModel
             var operators = repo.Operators.GetOperators();
 
             OperatorList = new ObservableCollection<string>(operators);
-            //DateList = new ObservableCollection<string>(dates.Select(t => t.ToString()));
+
+            var values = repo.Values.GetValues()
+                .OrderBy(val => int.Parse(val.Substring(5)))
+                .ToList();
+            ValueList = new ObservableCollection<string>(values);
         }
 
     }

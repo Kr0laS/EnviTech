@@ -250,6 +250,7 @@
     </ApplicationDefinition>
     <Compile Include="Db\BaseRepository.cs" />
     <Compile Include="Db\IOperatorsRepository.cs" />
+    <Compile Include="Db\IValuesRepository.cs" />
     <Compile Include="Db\OperatorsRepository.cs" />
     <Compile Include="Db\RepositoryFacade.cs" />
     <Compile Include="Db\ValuesRepository.cs" />

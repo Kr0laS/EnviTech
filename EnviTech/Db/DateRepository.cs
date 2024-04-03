@@ -29,5 +29,17 @@ namespace EnviTech.Db
 
             return dates.ToList();
         }
+
+        public DateTime GetEarliestDate()
+        {
+            string sql = $"SELECT MIN(Date_Time) FROM {DataTable}";
+            return _db.QueryFirstOrDefault<DateTime>(sql);
+        }
+
+        public DateTime GetLatestDate()
+        {
+            string sql = $"SELECT MAX(Date_Time) FROM {DataTable}";
+            return _db.QueryFirstOrDefault<DateTime>(sql);
+        }
     }
 }

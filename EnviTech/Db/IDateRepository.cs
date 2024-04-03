@@ -10,5 +10,7 @@ namespace EnviTech.Db
     {
         List<DateTime> GetDates();
         Task<List<DateTime>> GetDatesAsync();
+        DateTime GetEarliestDate();
+        DateTime GetLatestDate();
     }
 }

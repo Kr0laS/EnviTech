@@ -38,6 +38,7 @@ namespace EnviTech
                     services.AddScoped<IDbConnection>(t => new SqlConnection(dbString));
                     services.AddScoped<IDateRepository,DateRepository>();
                     services.AddScoped<IOperatorsRepository,OperatorsRepository>();
+                    services.AddScoped<IValuesRepository, ValuesRepository>();
                     services.AddScoped<RepositoryFacade>();
 
                     services.AddSingleton<MainWindow>();

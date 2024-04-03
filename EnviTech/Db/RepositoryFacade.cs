@@ -10,12 +10,15 @@ namespace EnviTech.Db
     {
         public readonly IDateRepository Dates;
         public readonly IOperatorsRepository Operators;
+        public readonly IValuesRepository Values;
 
         public RepositoryFacade(IDateRepository dateRepository,
-            IOperatorsRepository operatorsRepository)
+            IOperatorsRepository operatorsRepository,
+            IValuesRepository values)
         {
             Dates = dateRepository;
             Operators = operatorsRepository;
+            Values = values;
         }
     }
 }

@@ -19,15 +19,21 @@ namespace EnviTech.Db
         {
         }
 
-        public IEnumerable<object> GetDataByValue(DataModel model)
+        public IEnumerable<object> GetDataByValue(DataModel model, List<string> values)
         {
-            string sql = $"SELECT * FROM {DataTable} WHERE {model.ValueName} {model.Operation} " +
-                $"@InputValue AND Date_Time BETWEEN @StartDate AND @EndDate";
+            var status = model.ValueName.Replace("Value", "Status");
+
+            values.Remove(model.ValueName);
+            string Values = string.Join(", ", values.Select(v => $"d.{v}"));
+
+            string sql = $"SELECT d.Date_Time, {model.ValueName}, s.Description, {Values} FROM {DataTable} d " +
+                         $"INNER JOIN {StatusTable} s ON d.{status} = s.id " +
+                         $"WHERE {model.ValueName} {model.Operation} @InputValue " +
+                         $"AND Date_Time BETWEEN @StartDate AND @EndDate";
 
             var data = _db.Query<object>(sql, model);
 
             return data;
         }
-
     }
 }

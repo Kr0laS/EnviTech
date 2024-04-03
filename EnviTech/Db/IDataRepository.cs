@@ -6,6 +6,6 @@ namespace EnviTech.Db
 {
     public interface IDataRepository
     {
-        IEnumerable<object> GetDataByValue(DataModel dataModel);
+        IEnumerable<object> GetDataByValue(DataModel dataModel, List<string> values);
     }
 }

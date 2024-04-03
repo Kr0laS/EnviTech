@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using EnviTech.Db;
 using EnviTech.ViewModel;
+using EnviTech.StartupHelpers;
 
 namespace EnviTech
 {
@@ -37,7 +38,7 @@ namespace EnviTech
                     services.AddScoped<IValuesRepository, ValuesRepository>();
                     services.AddScoped<RepositoryFacade>();
 
-                    services.AddTransient<DataForm>();
+                    services.AddFormFactory<DataForm>();
                     services.AddSingleton<MainWindow>();
                     services.AddSingleton<MainViewModel>();
                 })

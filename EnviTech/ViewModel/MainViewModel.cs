@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using EnviTech.Db;
+using EnviTech.StartupHelpers;
 
 namespace EnviTech.ViewModel
 {
@@ -122,13 +123,13 @@ namespace EnviTech.ViewModel
         #endregion
 
         private readonly RepositoryFacade _repo;
-        private DataForm _dataForm;
+        private readonly IAbstractFactory<DataForm> _dataFormFactory;
 
         public MainViewModel(RepositoryFacade repo,
-            DataForm dataForm)
+            IAbstractFactory<DataForm> dataFormFactory)
         {
             _repo = repo;
-            _dataForm = dataForm;
+            _dataFormFactory = dataFormFactory;
 
             FetchDbInitialInfo();
 
@@ -144,7 +145,9 @@ namespace EnviTech.ViewModel
         
         private void SubmitForm()
         {
+            var dataform = _dataFormFactory.Create();
 
+            dataform.Show();
         }
         
         private void ClearPage()
